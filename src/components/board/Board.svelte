@@ -73,8 +73,8 @@
   @import "src/styles/vars.scss";
 
   .board {
-    width: 41rem;
-    height: 41rem;
+    width: 45vh;
+    height: 45vh;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
@@ -110,9 +110,9 @@
   }
 </style>
 
-<article class="score">
+<!-- <article class="score">
   <h4>Score: {score}</h4>
-</article>
+</article> -->
 
 {#if gameState === 'RUNNING'}
   <article class="board">

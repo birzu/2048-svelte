@@ -1,0 +1,64 @@
+<script lang="ts">
+  import type { TMoves } from "$src/types";
+
+  export let currMove: TMoves;
+
+  $: isLeft = currMove === "LEFT";
+  $: isRight = currMove === "RIGHT";
+  $: isUp = currMove === "UP";
+  $: isDown = currMove === "DOWN";
+</script>
+
+<style lang="scss">
+  .moves {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-row-gap: 0.8rem;
+    padding: 0 2rem;
+    justify-items: center;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 0.3rem;
+    border-radius: 0.8rem;
+
+    &--up {
+      grid-row: 1/ 2;
+      grid-column: 1/ -1;
+    }
+
+    &--up,
+    &--down,
+    &--right,
+    &--left {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      border: 2px solid #f2b179;
+      padding: 0.7rem;
+      width: 4.6rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      color: #4d4d4d;
+    }
+  }
+
+  @keyframes flash {
+    0% {
+      background-color: transparent;
+    }
+    100% {
+      background-color: #f2b179;
+      color: #f9f6f2;
+    }
+  }
+  .move-active {
+    animation: flash 0.1s ease-out;
+  }
+</style>
+
+<div class="moves">
+  <div class="moves--up" class:move-active={isUp}>&#8593;</div>
+  <div class="moves--left" class:move-active={isLeft}>&#8592;</div>
+  <div class="moves--down" class:move-active={isDown}>&#8595;</div>
+  <div class="moves--right" class:move-active={isRight}>&#8594;</div>
+</div>
