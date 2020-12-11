@@ -1,6 +1,6 @@
 <script lang="ts">
-  export let bestScore: number;
-  export let currScore: number;
+  import { bestScore } from "$src/stores/bestScore";
+  import { currentScore } from "$src/stores/currentScore";
 </script>
 
 <style lang="scss">
@@ -43,10 +43,10 @@
 <div class="score-container">
   <div class="score score--best">
     <p class="score__title">Personal best</p>
-    <span>{bestScore}</span>
+    <span>{$bestScore}</span>
   </div>
   <div class="score score--current">
     <p class="score__title">Score</p>
-    <span>{currScore}</span>
+    <span>{$currentScore}</span>
   </div>
 </div>

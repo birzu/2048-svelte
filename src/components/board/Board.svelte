@@ -7,6 +7,8 @@
     moveRight,
     moveUp,
   } from "$src/game";
+  import { bestScore } from "$src/stores/bestScore";
+  import { currentScore } from "$src/stores/currentScore";
   import type { TGState, MatMoveFn, TMoves } from "$src/types";
   import { pickRandomCellValue, pickRandomCoords } from "$src/utils";
   import { onMount } from "svelte";
@@ -14,12 +16,16 @@
   let mat = Array.from({ length: GRID_SIZE }, () => {
     return new Array(GRID_SIZE).fill(0);
   });
-  let score = 0;
   let gameState: TGState = "RUNNING";
   let prevMat = mat;
   let move: TMoves | null = null;
 
+  $: prevScore = $currentScore;
   $: addPossible = mat.some((row) => row.some((cell) => cell === 0));
+  $: if ($currentScore > $bestScore) {
+    bestScore.setNewBest($currentScore);
+    localStorage.setItem("best-score", $currentScore.toString());
+  }
 
   const addRandomCell = function () {
     const n = pickRandomCellValue();
@@ -35,10 +41,12 @@
   // mutates mat
   const updateMat = function (fn: MatMoveFn, playermove: TMoves) {
     move = playermove;
-    const ns = fn(mat, score);
+    const ns = fn(mat, $currentScore);
     prevMat = mat;
     mat = ns.mat;
-    score = ns.score;
+    // update currentScore
+    prevScore = $currentScore;
+    currentScore.setCurrent(ns.score);
     gameState = getState(mat);
     if (addPossible) {
       addRandomCell();
@@ -109,10 +117,6 @@
     margin-bottom: 1.8rem;
   }
 </style>
-
-<!-- <article class="score">
-  <h4>Score: {score}</h4>
-</article> -->
 
 {#if gameState === 'RUNNING'}
   <article class="board">
