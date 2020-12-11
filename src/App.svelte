@@ -105,7 +105,7 @@
   <section class="game">
     <Board />
     <aside class="game-controls">
-      <GameScores bestScore={0} currScore={0} />
+      <GameScores />
       <Moves currMove="LEFT" />
     </aside>
   </section>
