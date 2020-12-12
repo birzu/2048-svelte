@@ -12,8 +12,11 @@
   import { currentScore } from "$src/stores/currentScore";
   import type { TGState, MatMoveFn } from "$src/types";
   import { pickRandomCellValue, pickRandomCoords } from "$src/utils";
-  import { onMount } from "svelte";
+  import { afterUpdate, createEventDispatcher, onMount } from "svelte";
 
+  export let shouldReset: boolean;
+
+  const dispatch = createEventDispatcher();
   let mat = Array.from({ length: GRID_SIZE }, () => {
     return new Array(GRID_SIZE).fill(0);
   });
@@ -47,10 +50,22 @@
     prevScore = $currentScore;
     currentScore.setCurrent(ns.score);
     gameState = getState(mat);
+    dispatch("update-state", { state: gameState });
     if (addPossible) {
       addRandomCell();
       gameState = getState(mat);
+      dispatch("update-state", { state: gameState });
     }
+  };
+
+  const reset = function () {
+    gameState = "RUNNING";
+    mat = Array.from({ length: GRID_SIZE }, () => {
+      return new Array(GRID_SIZE).fill(0);
+    });
+    addRandomCell();
+    addRandomCell();
+    dispatch("update-state", { state: gameState });
   };
 
   window.addEventListener("keydown", function (e) {
@@ -77,6 +92,12 @@
   onMount(() => {
     addRandomCell();
     addRandomCell();
+  });
+
+  afterUpdate(() => {
+    if (shouldReset) {
+      reset();
+    }
   });
 </script>
 
@@ -121,26 +142,16 @@
   }
 </style>
 
-{#if gameState === 'RUNNING'}
-  <article class="board">
-    {#each mat as r, i}
-      {#each r as cell, j ({ i, j, cell })}
-        <div class="cell-container">
-          {#if cell}
-            <div class={`cell ${`cell-bg--${cell} cell-color--${cell}`}`}>
-              {!!cell ? cell : ''}
-            </div>
-          {/if}
-        </div>
-      {/each}
+<article class="board">
+  {#each mat as r, i}
+    {#each r as cell, j ({ i, j, cell })}
+      <div class="cell-container">
+        {#if cell}
+          <div class={`cell ${`cell-bg--${cell} cell-color--${cell}`}`}>
+            {!!cell ? cell : ''}
+          </div>
+        {/if}
+      </div>
     {/each}
-  </article>
-{:else if gameState === 'OVER'}
-  <article class="game-over">
-    <h1>Game Over</h1>
-  </article>
-{:else}
-  <article class="game-won">
-    <h1>You Won!</h1>
-  </article>
-{/if}
+  {/each}
+</article>
