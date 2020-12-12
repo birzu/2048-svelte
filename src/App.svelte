@@ -2,6 +2,7 @@
   import Board from "$components/board/Board.svelte";
   import GameScores from "./components/game/GameScores.svelte";
   import Moves from "./components/UI/Moves.svelte";
+  import { currentMove } from "./stores/currentMove";
 
   let title = "2048";
 </script>
@@ -106,7 +107,7 @@
     <Board />
     <aside class="game-controls">
       <GameScores />
-      <Moves currMove="LEFT" />
+      <Moves currMove={$currentMove} />
     </aside>
   </section>
 </main>

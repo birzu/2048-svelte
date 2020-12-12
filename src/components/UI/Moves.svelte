@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { TMoves } from "$src/types";
 
-  export let currMove: TMoves;
+  export let currMove: TMoves | null;
 
   $: isLeft = currMove === "LEFT";
   $: isRight = currMove === "RIGHT";
