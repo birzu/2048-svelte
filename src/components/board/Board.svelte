@@ -8,8 +8,9 @@
     moveUp,
   } from "$src/game";
   import { bestScore } from "$src/stores/bestScore";
+  import { currentMove } from "$src/stores/currentMove";
   import { currentScore } from "$src/stores/currentScore";
-  import type { TGState, MatMoveFn, TMoves } from "$src/types";
+  import type { TGState, MatMoveFn } from "$src/types";
   import { pickRandomCellValue, pickRandomCoords } from "$src/utils";
   import { onMount } from "svelte";
 
@@ -18,7 +19,6 @@
   });
   let gameState: TGState = "RUNNING";
   let prevMat = mat;
-  let move: TMoves | null = null;
 
   $: prevScore = $currentScore;
   $: addPossible = mat.some((row) => row.some((cell) => cell === 0));
@@ -39,8 +39,7 @@
   };
 
   // mutates mat
-  const updateMat = function (fn: MatMoveFn, playermove: TMoves) {
-    move = playermove;
+  const updateMat = function (fn: MatMoveFn) {
     const ns = fn(mat, $currentScore);
     prevMat = mat;
     mat = ns.mat;
@@ -57,16 +56,20 @@
   window.addEventListener("keydown", function (e) {
     switch (e.code) {
       case "ArrowLeft":
-        gameState === "RUNNING" && updateMat(moveLeft, "LEFT");
+        currentMove.setMove("LEFT");
+        gameState === "RUNNING" && updateMat(moveLeft);
         break;
       case "ArrowRight":
-        gameState === "RUNNING" && updateMat(moveRight, "RIGHT");
+        currentMove.setMove("RIGHT");
+        gameState === "RUNNING" && updateMat(moveRight);
         break;
       case "ArrowUp":
-        gameState === "RUNNING" && updateMat(moveUp, "UP");
+        currentMove.setMove("UP");
+        gameState === "RUNNING" && updateMat(moveUp);
         break;
       case "ArrowDown":
-        gameState === "RUNNING" && updateMat(moveDown, "DOWN");
+        currentMove.setMove("DOWN");
+        gameState === "RUNNING" && updateMat(moveDown);
         break;
     }
   });
