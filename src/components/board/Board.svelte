@@ -24,8 +24,8 @@
   let prevMat = mat;
   let swipedirn: SwipeDirection | null = null;
 
-  let threshold = 150;
-  let duration = 300;
+  let threshold = 80;
+  let duration = 1000;
   let restraint = 100;
 
   let startX: number | null = null;
