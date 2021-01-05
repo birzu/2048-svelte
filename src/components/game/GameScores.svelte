@@ -10,32 +10,48 @@
     padding: 0rem 2rem;
     border-bottom-left-radius: 0.8rem;
     border-bottom-right-radius: 0.8rem;
+    @media only screen and (max-width: 37.5em) {
+      padding: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   .score {
-    background-color: rgba(#f2b179, 0.84);
+    background-color: rgba(#eee4da, 0.5);
     margin: 0 1rem 1rem 1rem;
     border-radius: 0.7rem;
     padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media only screen and (max-width: 37.5em) {
+      line-height: 1.4;
+      flex-basis: 48%;
+      height: 77%;
+      margin: 0;
+      padding: 0.4rem 0.2rem;
+    }
 
     &:not(:first-child) {
       margin: 1rem;
+      @media only screen and (max-width: 37.5em) {
+        margin: 0;
+      }
     }
 
     &__title {
       font-size: 1.4rem;
       text-transform: uppercase;
       font-weight: 600;
-      color: #2e2e2e;
+      color: #777;
       opacity: 0.8;
     }
 
     & span {
       font-size: 4.2rem;
-      color: #4d4d4d;
+      color: #776e65;
     }
   }
 </style>

@@ -105,8 +105,8 @@
   @import "src/styles/vars.scss";
 
   .board {
-    width: 45vh;
-    height: 45vh;
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
@@ -114,6 +114,12 @@
     background-color: $color-board-bg;
     padding: 1rem;
     border-radius: 0.7rem;
+
+    @media only screen and (max-width: 37.5em) {
+      justify-self: center;
+      width: 97%;
+      height: 97%;
+    }
   }
 
   .cell-container {

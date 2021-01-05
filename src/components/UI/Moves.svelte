@@ -22,6 +22,11 @@
     margin-bottom: 0.3rem;
     border-radius: 0.8rem;
 
+    @media only screen and (max-width: 37.5em) {
+      display: none;
+      visibility: hidden;
+    }
+
     &--up {
       grid-row: 1/ 2;
       grid-column: 1/ -1;
@@ -34,11 +39,22 @@
       font-size: 3.2rem;
       line-height: 1.2;
       border: 2px solid #f2b179;
-      padding: 0.7rem;
-      width: 4.6rem;
+      padding: 0.5rem;
+      min-width: 4.2rem;
       border-radius: 0.5rem;
       text-align: center;
-      color: #4d4d4d;
+      color: darken(#ede0c8, 30%);
+
+      @media only screen and (max-width: 48em) {
+        font-size: 2.8rem;
+        padding: 0.3rem;
+        min-width: 4rem;
+      }
+      @media only screen and (max-width: 40em) {
+        font-size: 2.6rem;
+        padding: 0.2rem;
+        min-width: 3.8rem;
+      }
     }
   }
 
