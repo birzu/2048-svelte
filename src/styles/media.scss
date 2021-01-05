@@ -1,0 +1,209 @@
+@media only screen and (max-width: 120em) {
+  .game {
+    width: 42vw;
+    grid-template-columns: 25vw 1fr;
+    grid-template-rows: 25vw;
+    gap: 3rem;
+  }
+
+  .game-controls {
+    width: 90%;
+  }
+
+  header {
+    width: 46vw;
+  }
+  .footer {
+    width: 42vw;
+    margin: 7rem auto 4rem auto;
+  }
+}
+@media only screen and (max-width: 100em) {
+  .game {
+    width: 45vw;
+    grid-template-columns: 28vw 1fr;
+    grid-template-rows: 28vw;
+    gap: 1rem;
+  }
+
+  .game-controls {
+    width: 100%;
+  }
+
+  header {
+    width: 50vw;
+  }
+  .footer {
+    width: 45vw;
+    margin: 10rem auto 4rem auto;
+  }
+}
+@media only screen and (max-width: 75em) {
+  .game {
+    width: 62vw;
+    grid-template-columns: 40vw 1fr;
+    grid-template-rows: 40vw;
+    gap: 1rem;
+  }
+
+  .game-controls {
+    width: 100%;
+  }
+
+  header {
+    width: 70vw;
+  }
+  .footer {
+    width: 65vw;
+    margin: 10rem auto 4rem auto;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  .game {
+    width: 60vw;
+    grid-template-columns: 36vw 1fr;
+    grid-template-rows: 36vw;
+    gap: 1rem;
+  }
+
+  .game-controls {
+    width: 100%;
+  }
+
+  header {
+    width: 68vw;
+  }
+  .footer {
+    width: 60vw;
+    margin: 7rem auto 4rem auto;
+  }
+}
+@media only screen and (max-width: 52.125em) {
+  .game {
+    width: 64vw;
+    grid-template-columns: 34vw 1fr;
+    grid-template-rows: 34vw;
+    gap: 1rem;
+  }
+
+  .game-controls {
+    width: 100%;
+  }
+
+  header {
+    width: 72vw;
+  }
+  .footer {
+    width: 60vw;
+    margin: 7rem auto 4rem auto;
+  }
+}
+@media only screen and (max-width: 48em) {
+  .game {
+    width: 85vw;
+    grid-template-columns: 50vw 1fr;
+    grid-template-rows: 1fr;
+    gap: 1rem;
+  }
+
+  .game-controls {
+    width: 100%;
+  }
+
+  header {
+    width: 94vw;
+  }
+  .footer {
+    width: 80vw;
+    margin: 6rem auto 3rem auto;
+  }
+}
+@media only screen and (max-width: 43.75em) {
+  .game {
+    width: 85vw;
+    grid-template-columns: 50vw 1fr;
+    grid-template-rows: 1fr;
+    gap: 1rem;
+  }
+
+  .game-controls {
+    width: 100%;
+  }
+
+  header {
+    width: 94vw;
+  }
+  .footer {
+    width: 80vw;
+    margin: 5rem auto 2rem auto;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .game {
+    width: 85vw;
+    grid-template-columns: 85vw;
+    grid-template-rows: 1fr 85vw;
+    gap: 1rem;
+  }
+
+  .game-controls {
+    grid-row: 1 / 2;
+    width: 97%;
+    height: 100%;
+    flex-direction: row;
+    padding: 0.6rem 0;
+  }
+  header {
+    width: 90vw;
+  }
+  .footer {
+    width: 80vw;
+    margin: 3rem auto 2rem auto;
+  }
+}
+@media only screen and (max-width: 30em) {
+  .game {
+    width: 85vw;
+    grid-template-columns: 85vw;
+    grid-template-rows: 1fr 85vw;
+    gap: 1rem;
+  }
+  header {
+    width: 90vw;
+  }
+  .footer {
+    width: 80vw;
+    margin: 3rem auto 2rem auto;
+  }
+}
+@media only screen and (max-width: 23.4375em) {
+  .game {
+    width: 80vw;
+    grid-template-columns: 80vw;
+    grid-template-rows: 1fr 80vw;
+    gap: 1rem;
+  }
+  header {
+    width: 90vw;
+  }
+
+  .footer {
+    width: 75vw;
+    margin: 3rem auto 2rem auto;
+  }
+}
+@media only screen and (max-width: 17.5em) {
+  .game {
+    width: 90vw;
+    grid-template-columns: 90vw;
+    grid-template-rows: 1fr 90vw;
+    gap: 1rem;
+  }
+  header {
+    width: 90vw;
+  }
+  .footer {
+    width: 85vw;
+    margin: 3rem auto 2rem auto;
+  }
+}

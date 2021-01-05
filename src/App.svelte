@@ -39,6 +39,7 @@
 
   body {
     min-height: 100vh;
+    box-sizing: border-box;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -47,79 +48,26 @@
     position: relative;
   }
 
-  .game-container {
-    height: 45vh;
-
-    @media only screen and (max-width: 48em) {
-      height: 40vh;
-    }
-    @media only screen and (max-width: 37.5em) {
-      height: auto;
-    }
-  }
-
   .game {
     display: grid;
-    width: 77vh;
+    width: 42vw;
     margin: 0 auto;
-    grid-template-columns: 45vh 1fr;
-    grid-template-rows: 45vh;
-    gap: 5rem;
-
-    @media only screen and (max-width: 48em) {
-      width: 68vh;
-      grid-template-columns: 40vh 1fr;
-      grid-template-rows: 40vh;
-      gap: 3rem;
-    }
-    @media only screen and (max-width: 40em) {
-      width: 66vh;
-      grid-template-columns: 40vh 1fr;
-      grid-template-rows: 40vh;
-    }
-    @media only screen and (max-width: 37.5em) {
-      width: 44vh;
-      grid-template-columns: 44vh;
-      grid-template-rows: 1fr 44vh;
-      justify-content: center;
-      gap: 2rem;
-    }
-    @media only screen and (max-width: 30em) {
-      width: 36vh;
-      grid-template-columns: 36vh;
-      grid-template-rows: 1fr 36vh;
-      gap: 1rem;
-    }
-    @media only screen and (max-width: 23.4375em) {
-      width: 40vh;
-      grid-template-columns: 40vh;
-      grid-template-rows: 1fr 40vh;
-      gap: 1rem;
-    }
-    @media only screen and (max-width: 17.5em) {
-      width: 36vh;
-      grid-template-columns: 36vh;
-      grid-template-rows: 1fr 36vh;
-      gap: 1rem;
-    }
+    grid-template-columns: 50vh 1fr;
+    grid-template-rows: 50vh;
+    gap: 2rem;
   }
 
   .game-controls {
     height: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     border-radius: 0.8rem;
     overflow: hidden;
-    @media only screen and (max-width: 37.5em) {
-      grid-row: 1 / 2;
-      height: 100%;
-      flex-direction: row;
-      padding: 0.6rem 0;
-    }
   }
 
   header {
-    width: 75vh;
+    width: 46vw;
     padding: 3em 4em;
     margin: 0 auto;
     min-height: 10vh;
@@ -129,88 +77,28 @@
     justify-items: center;
     align-items: center;
 
-    @media only screen and (max-width: 48em) {
-      width: 67vh;
-    }
-    @media only screen and (max-width: 40em) {
-      width: 65vh;
-    }
-    @media only screen and (max-width: 37.5em) {
-      width: 48vh;
-      min-height: 10rem;
-      padding: 3rem 2rem;
-    }
-    @media only screen and (max-width: 30em) {
-      width: 38vh;
-    }
-    @media only screen and (max-width: 23.4375em) {
-      width: 42vh;
-    }
-    @media only screen and (max-width: 17.5em) {
-      width: 36vh;
-    }
     & .heading {
       font-size: 7.2rem;
       color: #776e65;
       font-weight: 600;
       justify-self: left;
-      @media only screen and (max-width: 40em) {
-        font-size: 6.8rem;
-      }
-      @media only screen and (max-width: 37.5em) {
-        font-size: 5.2rem;
-      }
     }
 
     & .description {
       font-size: 1.7rem;
       color: #776e65;
-      @media only screen and (max-width: 37.5em) {
-        font-size: 1.8rem;
-      }
-      @media only screen and (max-width: 23.4375em) {
-        font-size: 1.6rem;
-      }
-
       & strong {
         font-size: 1.8rem;
-        @media only screen and (max-width: 37.5em) {
-          font-size: 1.8rem;
-        }
-        @media only screen and (max-width: 23.4375em) {
-          font-size: 1.6rem;
-        }
       }
     }
   }
 
   .footer {
-    width: 76vh;
+    width: 42vw;
     font-size: 1.6rem;
     color: #776e65;
-    margin: 7rem auto 0 auto;
+    margin: 7rem auto 4rem auto;
 
-    @media only screen and (max-width: 48em) {
-      width: 70vh;
-    }
-    @media only screen and (max-width: 40em) {
-      width: 65vh;
-    }
-    @media only screen and (max-width: 37.5em) {
-      width: 48vh;
-      font-size: 1.7rem;
-    }
-    @media only screen and (max-width: 30em) {
-      width: 36vh;
-    }
-    @media only screen and (max-width: 23.4375em) {
-      width: 40vh;
-      margin-bottom: 2rem;
-    }
-    @media only screen and (max-width: 17.5em) {
-      width: 36vh;
-      margin-bottom: 2rem;
-    }
     & a {
       &:link,
       &:visited {
@@ -265,6 +153,7 @@
       outline: 3px solid #f2b179;
     }
   }
+  @import "src/styles/media.scss";
 </style>
 
 <header>

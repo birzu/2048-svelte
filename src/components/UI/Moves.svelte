@@ -22,11 +22,6 @@
     margin-bottom: 0.3rem;
     border-radius: 0.8rem;
 
-    @media only screen and (max-width: 37.5em) {
-      display: none;
-      visibility: hidden;
-    }
-
     &--up {
       grid-row: 1/ 2;
       grid-column: 1/ -1;
@@ -36,25 +31,14 @@
     &--down,
     &--right,
     &--left {
-      font-size: 3.2rem;
+      font-size: 3.6rem;
       line-height: 1.2;
       border: 2px solid #f2b179;
-      padding: 0.5rem;
-      min-width: 4.2rem;
+      padding: 0.5rem 1rem;
+      min-width: 6rem;
       border-radius: 0.5rem;
       text-align: center;
       color: darken(#ede0c8, 30%);
-
-      @media only screen and (max-width: 48em) {
-        font-size: 2.8rem;
-        padding: 0.3rem;
-        min-width: 4rem;
-      }
-      @media only screen and (max-width: 40em) {
-        font-size: 2.6rem;
-        padding: 0.2rem;
-        min-width: 3.8rem;
-      }
     }
   }
 
@@ -69,6 +53,69 @@
   }
   .move-active {
     animation: flash 0.1s ease-out;
+  }
+
+  @media only screen and (max-width: 120em) {
+    .moves {
+      &--up,
+      &--down,
+      &--right,
+      &--left {
+        min-width: 5rem;
+        font-size: 3.4rem;
+      }
+    }
+  }
+  @media only screen and (max-width: 75em) {
+    .moves {
+      &--up,
+      &--down,
+      &--right,
+      &--left {
+        min-width: 4.8rem;
+        font-size: 3.2rem;
+      }
+    }
+  }
+  @media only screen and (max-width: 56.25em) {
+    .moves {
+      &--up,
+      &--down,
+      &--right,
+      &--left {
+        min-width: 4.4rem;
+        font-size: 3rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 48em) {
+    .moves {
+      &--up,
+      &--down,
+      &--right,
+      &--left {
+        min-width: 3.6rem;
+        font-size: 2.8rem;
+      }
+    }
+  }
+  @media only screen and (max-width: 40em) {
+    .moves {
+      &--up,
+      &--down,
+      &--right,
+      &--left {
+        min-width: 3.2rem;
+        font-size: 2.8rem;
+      }
+    }
+  }
+  @media only screen and (max-width: 37.5em) {
+    .moves {
+      display: none;
+      visibility: hidden;
+    }
   }
 </style>
 

@@ -10,12 +10,6 @@
     padding: 0rem 2rem;
     border-bottom-left-radius: 0.8rem;
     border-bottom-right-radius: 0.8rem;
-    @media only screen and (max-width: 37.5em) {
-      padding: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
   }
 
   .score {
@@ -26,19 +20,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    @media only screen and (max-width: 37.5em) {
-      line-height: 1.4;
-      flex-basis: 48%;
-      height: 77%;
-      margin: 0;
-      padding: 0.4rem 0.2rem;
-    }
-
     &:not(:first-child) {
       margin: 1rem;
-      @media only screen and (max-width: 37.5em) {
-        margin: 0;
-      }
     }
 
     &__title {
@@ -52,6 +35,39 @@
     & span {
       font-size: 4.2rem;
       color: #776e65;
+    }
+  }
+
+  @media only screen and (max-width: 56.25em) {
+    .score {
+      line-height: 1.3;
+      padding: 0.7rem 1.2rem;
+      & span {
+        font-size: 3.2rem;
+      }
+    }
+  }
+  @media only screen and (max-width: 37.5em) {
+    .score-container {
+      padding: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .score {
+      line-height: 1.3;
+      flex-basis: 48%;
+      height: 100%;
+      padding: 0.4rem 0.2rem;
+
+      &:not(:first-child) {
+        margin: 0;
+      }
+
+      & span {
+        font-size: 3.2rem;
+      }
     }
   }
 </style>
