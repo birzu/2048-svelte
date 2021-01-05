@@ -10,9 +10,9 @@
   import { bestScore } from "$src/stores/bestScore";
   import { currentMove } from "$src/stores/currentMove";
   import { currentScore } from "$src/stores/currentScore";
-  import type { TGState, MatMoveFn } from "$src/types";
+  import type { TGState, MatMoveFn, SwipeDirection } from "$src/types";
   import { pickRandomCellValue, pickRandomCoords } from "$src/utils";
-  import { afterUpdate, createEventDispatcher, onMount } from "svelte";
+  import { afterUpdate, createEventDispatcher, onMount, tick } from "svelte";
 
   export let shouldReset: boolean;
 
@@ -22,6 +22,45 @@
   });
   let gameState: TGState = "RUNNING";
   let prevMat = mat;
+  let swipedirn: SwipeDirection | null = null;
+
+  let threshold = 150;
+  let duration = 300;
+  let restraint = 100;
+
+  let startX: number | null = null;
+  let startY: number | null = null;
+  let startTime: number, timeElapsed: number;
+
+  const touchstart = function (e: TouchEvent) {
+    [startX, startY] = [e.changedTouches[0].pageX, e.changedTouches[0].pageY];
+    startTime = Date.now();
+  };
+
+  const touchmove = function (e: TouchEvent) {
+    e.preventDefault();
+  };
+
+  const touchend = function (e: TouchEvent) {
+    if (!startX || !startY) return;
+    let dirn: SwipeDirection;
+    let { pageX, pageY } = e.changedTouches[0];
+    let [xoffset, yoffset] = [pageX - startX, pageY - startY];
+    timeElapsed = Date.now() - startTime;
+
+    if (timeElapsed >= duration) return;
+
+    if (Math.abs(xoffset) >= threshold && Math.abs(yoffset) <= restraint) {
+      dirn = xoffset < 0 ? "left" : "right";
+      swipedirn = dirn;
+    } else if (
+      Math.abs(yoffset) >= threshold &&
+      Math.abs(xoffset) <= restraint
+    ) {
+      dirn = yoffset < 0 ? "up" : "down";
+      swipedirn = dirn;
+    }
+  };
 
   $: prevScore = $currentScore;
   $: addPossible = mat.some((row) => row.some((cell) => cell === 0));
@@ -68,35 +107,71 @@
     dispatch("update-state", { state: gameState });
   };
 
-  window.addEventListener("keydown", function (e) {
-    switch (e.code) {
+  const handleKeydown = function (event: KeyboardEvent) {
+    switch (event.code) {
       case "ArrowLeft":
         currentMove.setMove("LEFT");
         gameState === "RUNNING" && updateMat(moveLeft);
+        currentMove.reset();
         break;
       case "ArrowRight":
         currentMove.setMove("RIGHT");
         gameState === "RUNNING" && updateMat(moveRight);
+        currentMove.reset();
         break;
       case "ArrowUp":
         currentMove.setMove("UP");
         gameState === "RUNNING" && updateMat(moveUp);
+        currentMove.reset();
         break;
       case "ArrowDown":
         currentMove.setMove("DOWN");
         gameState === "RUNNING" && updateMat(moveDown);
+        currentMove.reset();
         break;
     }
-  });
+  };
 
   onMount(() => {
     addRandomCell();
     addRandomCell();
   });
 
-  afterUpdate(() => {
+  afterUpdate(async () => {
     if (shouldReset) {
       reset();
+    }
+
+    if (swipedirn) {
+      switch (swipedirn) {
+        case "left":
+          currentMove.setMove("LEFT");
+          gameState === "RUNNING" && updateMat(moveLeft);
+          currentMove.reset();
+          swipedirn = null;
+          break;
+
+        case "right":
+          currentMove.setMove("RIGHT");
+          gameState === "RUNNING" && updateMat(moveRight);
+          currentMove.reset();
+          swipedirn = null;
+          break;
+
+        case "up":
+          currentMove.setMove("UP");
+          gameState === "RUNNING" && updateMat(moveUp);
+          currentMove.reset();
+          swipedirn = null;
+          break;
+
+        case "down":
+          currentMove.setMove("DOWN");
+          gameState === "RUNNING" && updateMat(moveDown);
+          currentMove.reset();
+          swipedirn = null;
+          break;
+      }
     }
   });
 </script>
@@ -148,7 +223,16 @@
   }
 </style>
 
-<article class="board">
+<svelte:window on:keydown={handleKeydown} />
+
+<article
+  class="board"
+  on:touchstart|stopPropagation={touchstart}
+  on:touchmove|stopPropagation={touchmove}
+  on:touchend|stopPropagation={touchend}
+  on:touchcancel|stopPropagation={() => {
+    swipedirn = null;
+  }}>
   {#each mat as r, i}
     {#each r as cell, j ({ i, j, cell })}
       <div class="cell-container">

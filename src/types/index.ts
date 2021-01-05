@@ -8,3 +8,5 @@ export interface IMatInput {
 
 export type MatFn = (mi: IMatInput) => IMatInput;
 export type MatMoveFn = (mat: number[][], score: number) => ReturnType<MatFn>;
+
+export type SwipeDirection = "left" | "right" | "up" | "down";
